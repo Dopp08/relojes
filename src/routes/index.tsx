@@ -30,7 +30,6 @@ export const Route = createFileRoute("/")({
 function Index() {
   const { watches, loading, error } = useWatches();
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [filter, setFilter] = useState<string>("Todas");
 
   const selected = useMemo(() => watches.find((w) => w.id === selectedId) ?? null, [watches, selectedId]);
   const setSelected = (w: { id: string } | null) => setSelectedId(w ? w.id : null);
@@ -40,12 +39,8 @@ function Index() {
     [watches],
   );
   const available = useMemo(() => watches.filter((w) => !w.sold).length, [watches]);
-  const categories = useMemo(() => ["Todas", ...Array.from(new Set(watches.map((w) => w.category)))], [watches]);
 
-  const visible = useMemo(
-    () => watches.filter((w) => filter === "Todas" || w.category === filter),
-    [watches, filter],
-  );
+  const visible = watches;
 
   return (
     <div className="min-h-screen bg-ivory font-body text-ink selection:bg-brass/25">
@@ -151,21 +146,6 @@ function Index() {
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-brassdeep">Galería de stock</p>
             <h2 className="mt-2 font-display text-4xl font-black tracking-tight">Piezas en vitrina</h2>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            {categories.map((c) => (
-              <button
-                key={c}
-                onClick={() => setFilter(c)}
-                className={`px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] transition-colors ${
-                  filter === c
-                    ? "bg-ink text-cream"
-                    : "border border-ink/20 hover:border-ink"
-                }`}
-              >
-                {c}
-              </button>
-            ))}
           </div>
         </div>
 

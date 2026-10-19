@@ -237,7 +237,6 @@ function WatchForm({ watch, onCancel, onSaved }: { watch: Watch | null; onCancel
     reference: watch?.reference ?? "",
     year: watch?.year ? String(watch.year) : "",
     price: watch?.price != null ? String(watch.price) : "",
-    category: watch?.category ?? "",
     case_info: watch?.case ?? "",
     movement: watch?.movement ?? "",
     condition: watch?.condition ?? "",
@@ -286,7 +285,6 @@ function WatchForm({ watch, onCancel, onSaved }: { watch: Watch | null; onCancel
         reference: f.reference.trim(),
         year: f.year ? Number(f.year) : null,
         price: f.price.trim() === "" ? null : Number(f.price),
-        category: f.category.trim() || "Otros",
         case_info: f.case_info.trim(),
         movement: f.movement.trim(),
         condition: f.condition.trim(),
@@ -352,7 +350,6 @@ function WatchForm({ watch, onCancel, onSaved }: { watch: Watch | null; onCancel
         <label className="block"><span className={label}>Referencia</span><input className={input} value={f.reference} onChange={set("reference")} /></label>
         <label className="block"><span className={label}>Año</span><input type="number" min={1900} max={2100} className={input} value={f.year} onChange={set("year")} /></label>
         <label className="block"><span className={label}>Precio en € (vacío = «Consultar»)</span><input type="number" min={0} step="any" className={input} value={f.price} onChange={set("price")} /></label>
-        <label className="block"><span className={label}>Categoría (Diver, Clásico…)</span><input className={input} value={f.category} onChange={set("category")} /></label>
         <label className="block"><span className={label}>Caja (tamaño · material)</span><input className={input} value={f.case_info} onChange={set("case_info")} /></label>
         <label className="block"><span className={label}>Movimiento</span><input className={input} value={f.movement} onChange={set("movement")} /></label>
         <label className="block"><span className={label}>Estado</span><input className={input} value={f.condition} onChange={set("condition")} /></label>
