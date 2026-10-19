@@ -1,0 +1,110 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  /* Paper collage tokens */
+  --color-ivory: var(--ivory);
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-inksoft: var(--inksoft);
+  --color-brass: var(--brass);
+  --color-brassdeep: var(--brassdeep);
+  --color-sell: var(--sell);
+  --color-avail: var(--avail);
+}
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "Space Mono", monospace;
+}
+
+:root {
+  --radius: 0.5rem;
+  --ivory: #f4eedf;
+  --cream: #fbf8f0;
+  --paper: #fffdf6;
+  --ink: #211f1c;
+  --inksoft: #5a544b;
+  --brass: #a9803f;
+  --brassdeep: #7c5c28;
+  --sell: #b0432f;
+  --avail: #4e6b4e;
+
+  --background: var(--ivory);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--cream);
+  --secondary: var(--cream);
+  --secondary-foreground: var(--ink);
+  --muted: var(--cream);
+  --muted-foreground: var(--inksoft);
+  --accent: var(--brass);
+  --accent-foreground: var(--cream);
+  --destructive: var(--sell);
+  --destructive-foreground: var(--cream);
+  --border: oklch(0.2 0.01 60 / 12%);
+  --input: oklch(0.2 0.01 60 / 18%);
+  --ring: var(--brass);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+}
+
+@layer utilities {
+  .paper-shadow {
+    box-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.04),
+      0 14px 30px -18px rgba(33, 31, 28, 0.45);
+  }
+  .torn {
+    clip-path: polygon(0% 5%, 4% 2%, 10% 5%, 17% 1%, 24% 4%, 33% 1%, 41% 5%, 50% 2%, 59% 5%, 67% 1%, 76% 4%, 85% 1%, 92% 5%, 100% 2%, 100% 95%, 96% 98%, 89% 95%, 81% 99%, 72% 95%, 63% 99%, 54% 95%, 45% 99%, 36% 95%, 27% 99%, 18% 95%, 10% 99%, 4% 95%, 0% 99%);
+  }
+  .washi {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(169, 128, 63, 0.18) 0 2px,
+      transparent 2px 7px
+    );
+  }
+}
