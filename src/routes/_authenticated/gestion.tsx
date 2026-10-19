@@ -375,16 +375,29 @@ function WatchForm({ watch, onCancel, onSaved }: { watch: Watch | null; onCancel
             </div>
           ))}
         </div>
-        <input
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={(e) => {
-            addFiles(e.target.files);
-            e.target.value = "";
+        <label
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => {
+            e.preventDefault();
+            addFiles(e.dataTransfer.files);
           }}
-          className="mt-3 block text-sm"
-        />
+          className="mt-3 flex cursor-pointer flex-col items-center justify-center gap-2 border-2 border-dashed border-brass bg-ivory px-4 py-10 text-center transition-colors hover:bg-cream"
+        >
+          <span className="bg-ink px-5 py-3 font-mono text-[12px] uppercase tracking-[0.16em] text-cream">+ Añadir fotos</span>
+          <span className="text-sm text-inksoft">
+            Pulsa aquí o arrastra las fotos. Puedes elegir varias a la vez · {photos.length} de {MIN_PHOTOS} mínimas
+          </span>
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            className="sr-only"
+            onChange={(e) => {
+              addFiles(e.target.files);
+              e.target.value = "";
+            }}
+          />
+        </label>
       </div>
 
       {err && <p className="text-sm text-sell">{err}</p>}
