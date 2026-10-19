@@ -30,6 +30,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   const { watches, loading, error } = useWatches();
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [valuationOpen, setValuationOpen] = useState(false);
 
   const selected = useMemo(() => watches.find((w) => w.id === selectedId) ?? null, [watches, selectedId]);
   const setSelected = (w: { id: string } | null) => setSelectedId(w ? w.id : null);
@@ -276,12 +277,19 @@ function Index() {
                 </li>
               ))}
             </ol>
-            <a
-              href="mailto:relojes@miguelgarcia.me?subject=Quiero%20vender%20mi%20reloj"
-              className="mt-7 block bg-ink px-6 py-3 text-center font-mono text-[12px] uppercase tracking-[0.18em] text-cream transition-colors hover:bg-brassdeep"
+            <button
+              type="button"
+              onClick={() => setValuationOpen((v) => !v)}
+              aria-expanded={valuationOpen}
+              className="mt-7 block w-full bg-ink px-6 py-3 text-center font-mono text-[12px] uppercase tracking-[0.18em] text-cream transition-colors hover:bg-brassdeep"
             >
-              Solicitar valoración
-            </a>
+              {valuationOpen ? "Cerrar" : "Solicitar valoración"}
+            </button>
+            {valuationOpen && (
+              <div className="mt-5 border-t border-dashed border-ink/20">
+                <ContactForm embedded variant="valuation" topic="Valoración de reloj" />
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -316,7 +324,7 @@ function Index() {
             <div className="flex flex-wrap gap-x-12 gap-y-4 font-mono text-[11px] uppercase tracking-[0.18em] text-cream/70">
               <a className="hover:text-cream" href="#stock">Stock</a>
               <a className="hover:text-cream" href="#vender">Vender</a>
-              <a className="hover:text-cream" href="mailto:relojes@miguelgarcia.me">relojes@miguelgarcia.me</a>
+              <span>relojes@miguelgarcia.me</span>
             </div>
           </div>
           <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-cream/15 pt-6 font-mono text-[10px] uppercase tracking-[0.16em] text-cream/40">

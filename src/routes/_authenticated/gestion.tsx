@@ -410,7 +410,7 @@ function WatchForm({ watch, onCancel, onSaved }: { watch: Watch | null; onCancel
   );
 }
 
-type Msg = { id: string; name: string; email: string; message: string; read: boolean; created_at: string };
+type Msg = { id: string; name: string; email: string; message: string; topic: string; read: boolean; created_at: string };
 
 function Messages({ enabled }: { enabled: boolean }) {
   const [msgs, setMsgs] = useState<Msg[]>([]);
@@ -452,7 +452,8 @@ function Messages({ enabled }: { enabled: boolean }) {
       <div className="mt-4 space-y-3">
         {msgs.map((m) => (
           <div key={m.id} className={`paper-shadow p-4 ${m.read ? "bg-cream" : "bg-paper"}`}>
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brassdeep">{m.topic}</p>
+            <div className="mt-1 flex flex-wrap items-baseline justify-between gap-2">
               <p className="font-display text-lg font-semibold">
                 {m.name} · <a className="underline" href={`mailto:${m.email}`}>{m.email}</a>
               </p>

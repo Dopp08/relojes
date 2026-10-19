@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { formatPrice, type Watch } from "@/data/watches";
+import { ContactForm } from "@/components/ContactForm";
 
 interface Props {
   watch: Watch | null;
@@ -12,9 +13,11 @@ const rotations = ["-rotate-2", "rotate-2", "-rotate-3", "rotate-3"];
 
 export function WatchDetail({ watch, sold, onClose }: Props) {
   const [active, setActive] = useState(0);
+  const [ask, setAsk] = useState(false);
 
   useEffect(() => {
     setActive(0);
+    setAsk(false);
   }, [watch?.id]);
 
   useEffect(() => {
@@ -138,14 +141,26 @@ export function WatchDetail({ watch, sold, onClose }: Props) {
                   </p>
                 </div>
                 {!sold && (
-                  <a
-                    href={`mailto:relojes@miguelgarcia.me?subject=${encodeURIComponent(`Consulta por ${watch.brand} ${watch.model} (${watch.reference})`)}`}
+                  <button
+                    type="button"
+                    onClick={() => setAsk((v) => !v)}
+                    aria-expanded={ask}
                     className="bg-ink px-6 py-3 font-mono text-[12px] uppercase tracking-[0.18em] text-cream transition-colors hover:bg-brassdeep"
                   >
-                    Solicitar pieza
-                  </a>
+                    {ask ? "Cerrar" : "Solicitar pieza"}
+                  </button>
                 )}
               </div>
+
+              {!sold && ask && (
+                <div className="mt-5 border-t border-dashed border-ink/20">
+                  <ContactForm
+                    embedded
+                    variant="watch"
+                    topic={`Consulta por ${[watch.brand, watch.model, watch.reference && `(${watch.reference})`].filter(Boolean).join(" ")}`}
+                  />
+                </div>
+              )}
 
               <div className="mt-6 flex items-center gap-2 bg-ivory px-4 py-3">
                 <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-avail">✓</span>

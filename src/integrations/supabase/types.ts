@@ -54,8 +54,8 @@ export type Database = {
         ];
       };
       contact_messages: {
-        Row: { id: string; name: string; email: string; message: string; read: boolean; created_at: string };
-        Insert: { name: string; email: string; message: string };
+        Row: { id: string; name: string; email: string; message: string; topic: string; read: boolean; created_at: string };
+        Insert: { name: string; email: string; message: string; topic?: string };
         Update: Partial<{ read: boolean }>;
         Relationships: [];
       };
