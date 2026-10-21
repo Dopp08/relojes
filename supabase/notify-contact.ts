@@ -1,4 +1,5 @@
 // Código de la función "notify-contact" de Supabase (Edge Functions). Versión con motivo.
+// El remitente debe pertenecer al dominio verificado en Resend (avisos.miguelgarcia.me).
 Deno.serve(async (req) => {
   if (req.headers.get("x-webhook-secret") !== Deno.env.get("WEBHOOK_SECRET")) {
     return new Response("forbidden", { status: 403 });
@@ -18,7 +19,7 @@ Deno.serve(async (req) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "Los relojes de Miguel <onboarding@resend.dev>",
+      from: "Los relojes de Miguel <web@avisos.miguelgarcia.me>",
       to: [Deno.env.get("NOTIFY_EMAIL")],
       reply_to: m.email,
       subject: `${oneLine(topic)} · ${oneLine(m.name)}`,
