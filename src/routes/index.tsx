@@ -21,8 +21,10 @@ export const Route = createFileRoute("/")({
           "Relojes de segunda mano en Madrid, con ficha completa y fotografías de detalle.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://relojes.miguelgarcia.me/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://relojes.miguelgarcia.me/" }],
   }),
   component: Index,
 });
