@@ -16,12 +16,9 @@ export function Hero({
       <div className="washi pointer-events-none absolute inset-x-0 top-0 h-28 opacity-60" />
       <div className="relative mx-auto max-w-[1200px] px-6 pt-10 pb-20">
         <div className="flex items-center justify-between">
-          <div className="flex items-baseline gap-2">
-            <span className="font-display text-3xl font-black tracking-tight">Los relojes</span>
-            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-inksoft">
-              de Miguel
-            </span>
-          </div>
+          <span className="font-display text-2xl font-black tracking-tight sm:text-3xl">
+            Los relojes de Miguel
+          </span>
           <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.2em] text-inksoft md:flex">
             <a className="hover:text-ink" href="#stock">
               Stock
@@ -54,8 +51,10 @@ export function Hero({
               <span className="font-display font-normal italic">no se</span>{" "}
               <span className="relative inline-block">
                 <span className="absolute inset-x-0 bottom-2 -z-0 h-4 bg-brass/30" />
-                <span className="relative">vende.</span>
+                <span className="relative">vende,</span>
               </span>
+              <br />
+              tus relojes SÍ
             </h1>
             <p className="mt-8 max-w-md text-lg leading-relaxed text-inksoft">
               Relojes de segunda mano en stock, cada uno con ficha completa y al menos cinco
